@@ -1,5 +1,5 @@
 /*
- * Copyright 2006-2010 the original author or authors.
+ * Copyright 2006-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,14 +20,9 @@
  * @author Sergey Nebolsin (Grails 0.3)
  */
 
-includeTargets << griffonScript("_GriffonInit")
 includeTargets << griffonScript("_GriffonCreateArtifacts")
 
-target('default': "Installs Quartz config in the /griffon-app/conf/ directory") {
-    installQuartzConfig()
-}
-
-target(installQuartzConfig: "The implementation task") {
+target(installQuartzConfig: "Installs Quartz config in the /griffon-app/conf/ directory") {
     depends(checkVersion)
     def configFile = "${basedir}/griffon-app/conf/QuartzConfig.groovy"
     if(!(configFile as File).exists() || confirmInput("Quartz config file already exists in your project. Overwrite it?")) {
@@ -40,6 +35,7 @@ target(installQuartzConfig: "The implementation task") {
         event("StatusFinal", ["Quartz configuration file was installed into /griffon-app/conf/QuartzConfig.groovy"])
     }
 }
+setDefaultTarget(installQuartzConfig)
 
 confirmInput = {String message ->
     ant.input(message: message, addproperty: "confirm.message", validargs: "y,n")

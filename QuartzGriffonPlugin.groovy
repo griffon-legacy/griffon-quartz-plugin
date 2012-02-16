@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 the original author or authors.
+ * Copyright 2010-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,31 +19,53 @@
  */
 class QuartzGriffonPlugin {
     // the plugin version
-    def version = "0.1"
+    String version = '0.2'
     // the version or versions of Griffon the plugin is designed for
-    def griffonVersion = '0.9.2 > *' 
+    String griffonVersion = '0.9.5 > *'
     // the other plugins this plugin depends on
-    def dependsOn = [spring: '0.5']
+    Map dependsOn = [spring: '0.9']
     // resources that are included in plugin packaging
-    def pluginIncludes = []
+    List pluginIncludes = []
     // the plugin license
-    def license = 'Apache Software License 2.0'
+    String license = 'Apache Software License 2.0'
     // Toolkit compatibility. No value means compatible with all
     // Valid values are: swing, javafx, swt, pivot, gtk
-    def toolkits = []
+    List toolkits = []
     // Platform compatibility. No value means compatible with all
     // Valid values are:
     // linux, linux64, windows, windows64, macosx, macosx64, solaris
-    def platforms = []
+    List platforms = []
+    // URL where documentation can be found
+    String documentation = ''
+    // URL where source can be found
+    String source = 'https://github.com/griffon/griffon-quartz-plugin'
 
-    def author = 'Andres Almiray'
-    def authorEmail = 'aalmiray@users.sourceforge.net'
-    def title = 'Job scheduling via Quartz'
-    def description = '''
-Job scheduling via Quartz.
-Based on the Grails plugin of the same name.
+    List authors = [
+        [
+            name: 'Andres Almiray',
+            email: 'aalmiray@yahoo.com'
+        ]
+    ]
+    String title = 'Job scheduling via Quartz'
+    // accepts Markdown syntax. See http://daringfireball.net/projects/markdown/ for details
+    String description = '''
+The Quartz plugin allows your Griffon application to schedule jobs to be executed using a specified interval or
+cron expression. The underlying system uses the [Quartz Enterprise Job Scheduler][1] configured via Spring, but
+is made simpler by the coding by convention paradigm.
+This is a direct port of the [Quartz][2] for [Grails][3]. Original plugin made by Sergey Nebolsin.
+
+Usage
+-----
+
+This plugin provides the same features as it Grails counterpart except GORM integration.
+
+Scripts
+-------
+
+ * **create-job** - creates a new Job class in griffon-app/jobs
+
+[1]: http://www.quartz-scheduler.org
+[2]: http://grails.org/plugin/quartz
+[3]: http://grails.org
 '''
-
-    // URL to the plugin's documentation
-    def documentation = 'http://griffon.codehaus.org/Quartz+Plugin'
 }

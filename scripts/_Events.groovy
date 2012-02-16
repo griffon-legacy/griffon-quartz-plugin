@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 the original author or authors.
+ * Copyright 2010-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,25 +17,6 @@
 /**
  * @author Andres Almiray
  */
-
-def eventClosure1 = binding.variables.containsKey('eventSetClasspath') ? eventSetClasspath : {cl->}
-eventSetClasspath = { cl ->
-    eventClosure1(cl)
-    if(compilingPlugin('quartz')) return
-    griffonSettings.dependencyManager.flatDirResolver name: 'griffon-quartz-plugin', dirs: "${quartzPluginDir}/addon"
-    griffonSettings.dependencyManager.addPluginDependency('quartz', [
-        conf: 'compile',
-        name: 'griffon-quartz-addon',
-        group: 'org.codehaus.griffon.plugins',
-        version: quartzPluginVersion
-    ])
-    griffonSettings.dependencyManager.addPluginDependency('quartz', [
-        conf: 'build',
-        name: 'griffon-quartz-cli',
-        group: 'org.codehaus.griffon.plugins',
-        version: quartzPluginVersion
-    ])
-}
 
 eventCollectArtifacts = { artifactsInfo ->
     if(!artifactsInfo.find{ it.type == 'job' }) {

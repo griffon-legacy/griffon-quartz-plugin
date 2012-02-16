@@ -1,5 +1,4 @@
-@artifact.package@
-class @artifact.name@ {
+@artifact.package@class @artifact.name@ {
     static triggers = {
         cron name: '@artifact.name@', cronExpression: "30 * * * * ?"
     }
