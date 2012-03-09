@@ -21,8 +21,6 @@
 includeTargets << griffonScript("_GriffonCreateArtifacts")
 
 target('default': "Creates a new Quartz scheduled job") {
-    depends(checkVersion, parseArguments)
-
     def type = "Job"
     promptForName(type: type)
 

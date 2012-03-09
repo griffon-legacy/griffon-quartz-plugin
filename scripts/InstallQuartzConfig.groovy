@@ -23,7 +23,6 @@
 includeTargets << griffonScript("_GriffonCreateArtifacts")
 
 target(installQuartzConfig: "Installs Quartz config in the /griffon-app/conf/ directory") {
-    depends(checkVersion)
     def configFile = "${basedir}/griffon-app/conf/QuartzConfig.groovy"
     if(!(configFile as File).exists() || confirmInput("Quartz config file already exists in your project. Overwrite it?")) {
         ant.copy(
